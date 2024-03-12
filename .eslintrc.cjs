@@ -12,6 +12,7 @@ module.exports = {
         "plugin:import/errors",
         "plugin:import/warnings",
         "plugin:import/typescript",
+        "prettier"
     ],
     parserOptions: {
         ecmaVersion: "latest",
