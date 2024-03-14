@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Foores";
-import { Layout } from "./components/Layout";
+import { Layout } from "./components/Layout/Layout";
 
 export const App = () => {
   return (
