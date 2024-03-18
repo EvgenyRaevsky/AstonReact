@@ -1,7 +1,20 @@
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { toggleAuth } from "../../store/slice/authSlice";
 import "./Header.css";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { selectAuth } from "../../store/auth";
 
 export const Header = () => {
+  const dispatch = useAppDispatch();
+  const { signOutUser } = useAuth();
+  const isAuth = useAppSelector(selectAuth);
+
+  const logout = async () => {
+    await signOutUser();
+    dispatch(toggleAuth(false));
+  };
+
   return (
     <header className="header">
       <nav className="header__nav">
@@ -19,14 +32,24 @@ export const Header = () => {
             <NavLink to="/history">History</NavLink>
           </li>
         </ul>
-        <ul className="header__list header__list_end">
-          <li className="header__item">
-            <NavLink to="/signup">Sign Up</NavLink>
-          </li>
-          <li className="header__item">
-            <NavLink to="/signin">Sign In</NavLink>
-          </li>
-        </ul>
+        {isAuth ? (
+          <ul className="header__list header__list_end">
+            <li className="header__item">
+              <NavLink to="/" onClick={() => logout()} className="header__link">
+                Sign Out
+              </NavLink>
+            </li>
+          </ul>
+        ) : (
+          <ul className="header__list header__list_end">
+            <li className="header__item">
+              <NavLink to="/signup">Sign Up</NavLink>
+            </li>
+            <li className="header__item">
+              <NavLink to="/signin">Sign In</NavLink>
+            </li>
+          </ul>
+        )}
       </nav>
     </header>
   );

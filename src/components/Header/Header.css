@@ -56,3 +56,13 @@
   color: #0a5bf1;
   border-bottom: 1px solid #0a5bf1;
 }
+
+.header__item a.header__link {
+  color: #000000;
+  border-bottom: none;
+}
+
+.header__item a.header__link:hover {
+  color: #727272;
+  border-bottom: 1px solid #727272;
+}
