@@ -3,7 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { toggleAuth } from "../../store/slice/authSlice";
 import "./Header.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { selectAuth } from "../../store/auth";
+import { selectAuth } from "../../store/selectors/auth";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
