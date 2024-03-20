@@ -1,10 +1,12 @@
-import Anemo from "./images/anemo.webp";
-import Cryo from "./images/cryo.webp";
-import Dendro from "./images/dendro.webp";
-import Electro from "./images/electro.webp";
-import Geo from "./images/geo.webp";
-import Hydro from "./images/hydro.webp";
-import Pyro from "./images/pyro.webp";
+import Anemo from "./images/anemo.svg";
+import Cryo from "./images/cryo.svg";
+import Dendro from "./images/dendro.svg";
+import Electro from "./images/electro.svg";
+import Geo from "./images/geo.svg";
+import Hydro from "./images/hydro.svg";
+import Pyro from "./images/pyro.svg";
+
+import star from "./images/star.svg";
 
 export const vision = [
   {
@@ -39,4 +41,12 @@ export const vision = [
 
 export const findVision = (item: string) => {
   return vision.find(el => el.title === item)?.path;
+};
+
+export const rarity = (item: number) => {
+  const arr = [];
+  for (let i = 0; i < item; i++) {
+    arr.push(star);
+  }
+  return arr;
 };
