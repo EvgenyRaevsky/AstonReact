@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { toggleAuth } from "../../store/slice/authSlice";
-import "./Header.css";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { selectAuth } from "../../store/selectors/auth";
+import "./Header.css";
 
 export const Header = () => {
   const dispatch = useAppDispatch();

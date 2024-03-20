@@ -1,8 +1,8 @@
+import { NavLink } from "react-router-dom";
 import { transformSingleHeroResponseType } from "../../types/HeroData";
 import { findVision, rarity } from "../../assets";
 import heart from "../../assets/images/heart.svg";
 import "./Card.css";
-import { NavLink } from "react-router-dom";
 
 interface Props {
   hero: transformSingleHeroResponseType;

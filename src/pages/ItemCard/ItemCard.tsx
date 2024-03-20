@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
+import { skipToken } from "@reduxjs/toolkit/query";
 import { SingleCard } from "../../components/SingleCard/SingleCard";
 import { useGetGenshinSingleHeroInfoQuery } from "../../store/genshinApi";
-import { skipToken } from "@reduxjs/toolkit/query";
 import { Loader } from "../../components/Loader/Loader";
 import { transformSingleHeroResponseType } from "../../types/HeroData";
 import { Container } from "../../components/Container/Container";
