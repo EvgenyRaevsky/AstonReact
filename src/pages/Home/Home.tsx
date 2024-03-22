@@ -34,6 +34,7 @@ export const Home = () => {
 
   return (
     <Container>
+      <h1 className="container__title">Genshin Impact Heroes</h1>
       {allHeroInfo &&
         allHeroInfo.slice(0, lengthCards).map((hero, i: number) => {
           return <Card hero={hero} key={i} />;

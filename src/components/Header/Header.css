@@ -66,3 +66,13 @@
   color: #727272;
   border-bottom: 1px solid #727272;
 }
+
+.header__item a.header__item-no-color {
+  color: #000000;
+  border: none;
+}
+
+.header__item a.header__item-no-color:hover {
+  color: #727272;
+  border-bottom: 1px solid #727272;
+}

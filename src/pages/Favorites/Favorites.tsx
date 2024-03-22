@@ -7,6 +7,7 @@ export const Favorites = () => {
   const favoriteList = useAppSelector(selectFavorite);
   return (
     <Container>
+      <h1 className="container__title">Your Favorite Heroes</h1>
       {favoriteList.length > 0 ? (
         favoriteList.map((hero, i: number) => {
           return <Card hero={hero} key={i} />;
