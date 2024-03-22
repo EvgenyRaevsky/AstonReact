@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router";
 import { findVision, rarity } from "../../assets";
 import { transformSingleHeroResponseType } from "../../types/HeroData";
+import { useAppSelector } from "../../hooks/redux";
+import { selectUser } from "../../store/selectors/user";
+import { selectFavorite } from "../../store/selectors/favorite";
+import { useFavorite } from "../../hooks/useFavorite";
 import heart from "../../assets/images/heart.svg";
+import heartRed from "../../assets/images/heartRed.svg";
 import "./SingleCard.css";
 
 interface Props {
@@ -8,6 +14,27 @@ interface Props {
 }
 
 export const SingleCard = ({ singleHeroInfo }: Props) => {
+  const navigate = useNavigate();
+  const user = useAppSelector(selectUser);
+  const favoritesList = useAppSelector(selectFavorite);
+  const { addFavoritesHeroes, deleteFavoritesHeroes } = useFavorite();
+
+  const isFavorite = (id: string) => !!favoritesList.find(el => el.id === id);
+
+  const addToFavorite = async () => {
+    if (user?.email) {
+      await addFavoritesHeroes(singleHeroInfo, user.email);
+    } else {
+      navigate("/signin");
+    }
+  };
+
+  const removeFromFavorite = async () => {
+    if (user?.email) {
+      await deleteFavoritesHeroes(singleHeroInfo, user.email);
+    }
+  };
+
   return (
     <div className="single-card">
       <div className="single-card-image">
@@ -61,9 +88,18 @@ export const SingleCard = ({ singleHeroInfo }: Props) => {
           </span>
           {singleHeroInfo.description || "Absent"}
         </p>
-        <button className="single-card-info__btn">
-          Add to favorites <img src={heart} alt="Favorites" />
-        </button>
+        {isFavorite(singleHeroInfo.id) ? (
+          <button
+            className="single-card-info__btn single-card-info__btn_red"
+            onClick={removeFromFavorite}
+          >
+            Remove from favorites <img src={heartRed} alt="Favorites" />
+          </button>
+        ) : (
+          <button className="single-card-info__btn" onClick={addToFavorite}>
+            Add to favorites <img src={heart} alt="Favorites" />
+          </button>
+        )}
       </div>
     </div>
   );
