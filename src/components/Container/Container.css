@@ -34,3 +34,14 @@
 .container__btn:disabled:hover {
   box-shadow: none;
 }
+
+.container__favorite-none {
+  width: 100%;
+  text-align: center;
+  height: max-content;
+  font-size: 1.7rem;
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 50px;
+  box-shadow: 0 0 5px #777777;
+}

@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { transformSingleHeroResponseType } from "../../types/HeroData";
 import { findVision, rarity } from "../../assets";
+import { useAppSelector } from "../../hooks/redux";
+import { selectFavorite } from "../../store/selectors/favorite";
 import heart from "../../assets/images/heart.svg";
+import heartRed from "../../assets/images/heartRed.svg";
 import "./Card.css";
 
 interface Props {
@@ -9,6 +12,10 @@ interface Props {
 }
 
 export const Card = ({ hero }: Props) => {
+  const favoritesList = useAppSelector(selectFavorite);
+
+  const isFavorite = (id: string) => !!favoritesList.find(el => el.id === id);
+
   return (
     <NavLink to={`/characters/${hero.id}`} className="card">
       <img src={findVision(hero.vision)} alt="Element" className="card__bg" />
@@ -25,7 +32,11 @@ export const Card = ({ hero }: Props) => {
         </p>
       </div>
       <p className="card__text">
-        <img className="card__heart" src={heart} alt="Favourites" />
+        {isFavorite(hero.id) ? (
+          <img className="card__heart" src={heartRed} alt="Favourites" />
+        ) : (
+          <img className="card__heart" src={heart} alt="Favourites" />
+        )}
       </p>
     </NavLink>
   );

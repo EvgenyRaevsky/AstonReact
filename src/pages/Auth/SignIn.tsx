@@ -4,6 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useAppDispatch } from "../../hooks/redux";
 import { toggleAuth } from "../../store/slice/authSlice";
 import { useFormError } from "../../hooks/useFormError";
+import { useFavorite } from "../../hooks/useFavorite";
 import st from "./auth.module.css";
 
 export const SignIn = () => {
@@ -11,10 +12,19 @@ export const SignIn = () => {
   const dispatch = useAppDispatch();
   const { signInUser } = useAuth();
   const { error, setError } = useFormError();
+  const { getFavoritesHeroes } = useFavorite();
 
   const handlerClick = async (email: string, password: string) => {
     const user = await signInUser(email, password);
-    if (user) {
+    if (user?.email) {
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          uid: user.uid,
+          email: user.email
+        })
+      );
+      await getFavoritesHeroes(user.email);
       dispatch(toggleAuth(true));
       navigate("/");
     } else {

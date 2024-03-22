@@ -64,6 +64,11 @@
   font-weight: 600;
 }
 
+.single-card-info__btn_red {
+  border: 1px solid #ff0000;
+  background-color: #ff00001a;
+}
+
 .single-card-info__btn img {
   width: 35px;
 }

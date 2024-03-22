@@ -3,16 +3,28 @@ import { useAuth } from "../../hooks/useAuth";
 import { toggleAuth } from "../../store/slice/authSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { selectAuth } from "../../store/selectors/auth";
+import { setFavorites } from "../../store/slice/favoriteSlice";
+import { setUser } from "../../store/slice/userSlice";
+import { useFavorite } from "../../hooks/useFavorite";
 import "./Header.css";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
   const { signOutUser } = useAuth();
   const isAuth = useAppSelector(selectAuth);
+  const { getFavoritesHeroes } = useFavorite();
+
+  if (localStorage.getItem("user")) {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    dispatch(setUser(user));
+    getFavoritesHeroes(user.email);
+    dispatch(toggleAuth(true));
+  }
 
   const logout = async () => {
     await signOutUser();
     dispatch(toggleAuth(false));
+    dispatch(setFavorites([]));
   };
 
   return (
@@ -26,7 +38,11 @@ export const Header = () => {
             <NavLink to="/">Home</NavLink>
           </li>
           <li className="header__item">
-            <NavLink to="/favorites">Favorites</NavLink>
+            {isAuth ? (
+              <NavLink to="/favorites">Favorites</NavLink>
+            ) : (
+              <NavLink to="/signin">Favorites</NavLink>
+            )}
           </li>
           <li className="header__item">
             <NavLink to="/history">History</NavLink>

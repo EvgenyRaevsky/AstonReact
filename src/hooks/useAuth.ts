@@ -58,6 +58,7 @@ export const useAuth = () => {
 
   const signOutUser = async () => {
     await logout();
+    localStorage.removeItem("user");
     dispatch(clearUser());
   };
 
