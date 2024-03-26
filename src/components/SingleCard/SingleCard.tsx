@@ -5,19 +5,31 @@ import { useAppSelector } from "../../hooks/redux";
 import { selectUser } from "../../store/selectors/user";
 import { selectFavorite } from "../../store/selectors/favorite";
 import { useFavorite } from "../../hooks/useFavorite";
-import heart from "../../assets/images/heart.svg";
+import { useGetGenshinSingleHeroInfoQuery } from "../../store/genshinApi";
+import { requestProcessingSearch } from "../../utils/requestProcessing";
+import { Loader } from "../Loader/Loader";
+import { NotFound } from "../NotFound/NotFound";
 import heartRed from "../../assets/images/heartRed.svg";
+import heart from "../../assets/images/heart.svg";
 import "./SingleCard.css";
 
 interface Props {
-  singleHeroInfo: transformSingleHeroResponseType;
+  name: string;
 }
 
-export const SingleCard = ({ singleHeroInfo }: Props) => {
+interface SingleHeroInfo {
+  data: transformSingleHeroResponseType;
+  isLoading: boolean;
+  error: string;
+}
+
+export const SingleCard = ({ name }: Props) => {
   const navigate = useNavigate();
   const user = useAppSelector(selectUser);
   const favoritesList = useAppSelector(selectFavorite);
   const { addFavoritesHeroes, deleteFavoritesHeroes } = useFavorite();
+
+  const transformName = requestProcessingSearch(name);
 
   const isFavorite = (id: string) => !!favoritesList.find(el => el.id === id);
 
@@ -34,6 +46,20 @@ export const SingleCard = ({ singleHeroInfo }: Props) => {
       await deleteFavoritesHeroes(singleHeroInfo, user.email);
     }
   };
+
+  const {
+    data: singleHeroInfo,
+    isLoading,
+    error
+  } = useGetGenshinSingleHeroInfoQuery<SingleHeroInfo>(transformName);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <NotFound />;
+  }
 
   return (
     <div className="single-card">

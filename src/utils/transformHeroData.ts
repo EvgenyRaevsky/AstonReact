@@ -22,7 +22,7 @@ const onlyLastName = [
 
 const onlyFirstName = ["Raiden Shogun"];
 
-const setId = (name: string, vision: string) => {
+export const setId = (name: string, vision: string) => {
   if (name === "Traveler") {
     return `${name.toLowerCase()}-${vision.toLowerCase()}`;
   }

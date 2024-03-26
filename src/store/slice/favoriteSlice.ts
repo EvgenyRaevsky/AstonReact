@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { transformSingleHeroResponseType } from "../../types/HeroData";
 
 interface initialFavoriteState {
@@ -13,7 +13,10 @@ export const favoriteSlice = createSlice({
   name: "favorite",
   initialState,
   reducers: {
-    setFavorites: (state, action) => {
+    setFavorites: (
+      state,
+      action: PayloadAction<transformSingleHeroResponseType[]>
+    ) => {
       state.favorites = action.payload;
     }
   }
