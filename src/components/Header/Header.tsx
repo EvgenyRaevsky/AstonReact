@@ -7,19 +7,23 @@ import { selectAuth } from "../../store/selectors/auth";
 import { setFavorites } from "../../store/slice/favoriteSlice";
 import { setUser } from "../../store/slice/userSlice";
 import { useFavorite } from "../../hooks/useFavorite";
+import { setHistory, setSagest } from "../../store/slice/historySlice";
+import { useHistory } from "../../hooks/useHistory";
 import "./Header.css";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
   const { signOutUser } = useAuth();
-  const isAuth = useAppSelector(selectAuth);
   const { getFavoritesHeroes } = useFavorite();
+  const { getHistoryRequests } = useHistory();
+  const isAuth = useAppSelector(selectAuth);
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
       const user = JSON.parse(localStorage.getItem("user") || "{}");
       dispatch(setUser(user));
       getFavoritesHeroes(user.email);
+      getHistoryRequests(user.email);
       dispatch(toggleAuth(true));
     }
   }, []);
@@ -28,6 +32,8 @@ export const Header = () => {
     await signOutUser();
     dispatch(toggleAuth(false));
     dispatch(setFavorites([]));
+    dispatch(setHistory([]));
+    dispatch(setSagest([]));
   };
 
   return (

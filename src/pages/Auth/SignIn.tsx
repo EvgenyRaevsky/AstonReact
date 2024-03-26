@@ -6,6 +6,7 @@ import { toggleAuth } from "../../store/slice/authSlice";
 import { useFormError } from "../../hooks/useFormError";
 import { useFavorite } from "../../hooks/useFavorite";
 import st from "./auth.module.css";
+import { useHistory } from "../../hooks/useHistory";
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ export const SignIn = () => {
   const { signInUser } = useAuth();
   const { error, setError } = useFormError();
   const { getFavoritesHeroes } = useFavorite();
+  const { getHistoryRequests } = useHistory();
 
   const handlerClick = async (email: string, password: string) => {
     const user = await signInUser(email, password);
@@ -25,6 +27,7 @@ export const SignIn = () => {
         })
       );
       await getFavoritesHeroes(user.email);
+      await getHistoryRequests(user.email);
       dispatch(toggleAuth(true));
       navigate("/");
     } else {
