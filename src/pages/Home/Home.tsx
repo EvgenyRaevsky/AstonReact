@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { endLenCard, showMoreCard } from "../../store/slice/moreCardSlice";
 import { selectEndCard, selectMoreCard } from "../../store/selectors/moreCard";
 import { transformSingleHeroResponseType } from "../../types/HeroData";
+import { SearchText } from "../../components/SearchText/SearchText";
 
 interface AllHeroInfo {
   data: transformSingleHeroResponseType[];
@@ -35,6 +36,7 @@ export const Home = () => {
   return (
     <Container>
       <h1 className="container__title">Genshin Impact Heroes</h1>
+      <SearchText visible={true} />
       {allHeroInfo &&
         allHeroInfo.slice(0, lengthCards).map((hero, i: number) => {
           return <Card hero={hero} key={i} />;
