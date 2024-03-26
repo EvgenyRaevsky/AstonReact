@@ -17,7 +17,7 @@ export const Card = ({ hero }: Props) => {
   const isFavorite = (id: string) => !!favoritesList.find(el => el.id === id);
 
   return (
-    <NavLink to={`/characters/${hero.id}`} className="card">
+    <NavLink to={`/${hero.id}`} className="card">
       <img src={findVision(hero.vision)} alt="Element" className="card__bg" />
       <h2 className="card__title">{hero.name}</h2>
       <div className="card__box">
