@@ -1,0 +1,30 @@
+.suggest {
+  position: absolute;
+  top: calc(100% + 8px);
+  background-color: #ffffff;
+  box-shadow: 0 0 10px #777777;
+  width: 800px;
+  border-radius: 25px;
+  z-index: 10;
+  padding: 15px;
+  overflow: hidden;
+}
+
+.suggest-false {
+  display: none;
+}
+
+.suggest-true {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.suggest__request {
+  padding: 8px 25px;
+  border-radius: 25px;
+  background-color: aliceblue;
+  font-size: 1.35rem;
+  box-shadow: 0 0 2px #777777;
+  cursor: pointer;
+}

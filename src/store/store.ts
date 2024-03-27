@@ -4,6 +4,7 @@ import { userSLice } from "./slice/userSlice";
 import { authSlice } from "./slice/authSlice";
 import { moreCardSlice } from "./slice/moreCardSlice";
 import { favoriteSlice } from "./slice/favoriteSlice";
+import { historySlice } from "./slice/historySlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     user: userSLice.reducer,
     auth: authSlice.reducer,
     moreCard: moreCardSlice.reducer,
-    favorite: favoriteSlice.reducer
+    favorite: favoriteSlice.reducer,
+    history: historySlice.reducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(genshinApi.middleware)

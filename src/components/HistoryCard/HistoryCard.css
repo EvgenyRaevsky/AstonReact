@@ -1,0 +1,27 @@
+.history-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: aliceblue;
+  border-radius: 15px;
+  padding: 5px 20px;
+  gap: 50px;
+}
+.history-card__request {
+  width: 100%;
+  font-size: 1.35rem;
+}
+.history-card__btn-block {
+  display: flex;
+  gap: 15px;
+  padding: 5px;
+}
+.history-card__button {
+  width: 30px;
+  background-color: aliceblue;
+}
+
+.history-card__button img {
+  width: 100%;
+}
