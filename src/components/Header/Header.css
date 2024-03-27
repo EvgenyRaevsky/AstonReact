@@ -4,7 +4,16 @@
   height: 80px;
   box-shadow: 0 0 10px #777777;
   position: relative;
+  transition: 0.3s;
   z-index: 10;
+}
+
+.header-light {
+  background-color: #ffffff;
+}
+
+.header-dark {
+  background-color: #353535;
 }
 
 .header__logo {
@@ -32,6 +41,8 @@
 .header__list_end {
   width: 20%;
   justify-content: end;
+  position: relative;
+  right: 40px;
 }
 
 .header__item {
@@ -40,41 +51,91 @@
 
 .header__item a {
   font-size: 1.2rem;
-  color: #000000;
   transition-duration: 0.2s;
 }
 
-.header__item a.active {
+.header-light .header__item a {
+  color: #000000;
+}
+
+.header-dark .header__item a {
+  color: #ffffff;
+}
+
+.header-light .header__item a.active {
   color: #0a5bf1;
   border-bottom: 1px solid #0a5bf1;
 }
 
-.header__item a:hover {
+.header-dark .header__item a.active {
+  color: #acc9ff;
+  border-bottom: 1px solid #acc9ff;
+}
+
+.header-light .header__item a:hover {
   color: #727272;
   border-bottom: 1px solid #727272;
 }
 
-.header__item a.active:hover {
+.header-dark .header__item a:hover {
+  color: #dadada;
+  border-bottom: 1px solid #dadada;
+}
+
+.header-light .header__item a.active:hover {
   color: #0a5bf1;
   border-bottom: 1px solid #0a5bf1;
 }
 
-.header__item a.header__link {
+.header-dark .header__item a.active:hover {
+  color: #acc9ff;
+  border-bottom: 1px solid #acc9ff;
+}
+
+.header-light .header__item a.header__link {
   color: #000000;
   border-bottom: none;
 }
 
-.header__item a.header__link:hover {
+.header-dark .header__item a.header__link {
+  color: #ffffff;
+  border-bottom: none;
+}
+
+.header-light .header__item a.header__link:hover {
   color: #727272;
   border-bottom: 1px solid #727272;
 }
 
-.header__item a.header__item-no-color {
+.header-dark .header__item a.header__link:hover {
+  color: #dadada;
+  border-bottom: 1px solid #dadada;
+}
+
+.header-light .header__item a.header__item-no-color {
   color: #000000;
   border: none;
 }
 
-.header__item a.header__item-no-color:hover {
+.header-dark .header__item a.header__item-no-color {
+  color: #ffffff;
+  border: none;
+}
+
+.header-light .header__item a.header__item-no-color:hover {
   color: #727272;
   border-bottom: 1px solid #727272;
+}
+
+.header-dark .header__item a.header__item-no-color:hover {
+  color: #dadada;
+  border-bottom: 1px solid #dadada;
+}
+
+.header__theme {
+  width: 30px;
+  margin-right: 20px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
 }

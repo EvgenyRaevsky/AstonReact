@@ -4,7 +4,16 @@
   height: 80px;
   box-shadow: 0 0 10px #777777;
   position: relative;
+  transition: 0.3s;
   z-index: 10;
+}
+
+.footer-light {
+  background-color: #ffffff;
+}
+
+.footer-dark {
+  background-color: #353535;
 }
 
 .footer__nav {
@@ -23,12 +32,22 @@
   padding: 5px 10px;
 }
 
-.footer__item a {
+.footer-light .footer__item a {
   font-size: 1.2rem;
   color: #000000;
 }
 
-.footer__item a:hover {
+.footer-dark .footer__item a {
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.footer-light .footer__item a:hover {
   color: #727272;
   border-bottom: 1px solid #727272;
+}
+
+.footer-dark .footer__item a:hover {
+  color: #dadada;
+  border-bottom: 1px solid #dadada;
 }
