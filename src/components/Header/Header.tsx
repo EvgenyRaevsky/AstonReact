@@ -47,9 +47,13 @@ export const Header = () => {
       <nav className="header__nav">
         <div className="header__logo">
           {lightTheme ? (
-            <img src={logoDark} alt="Logo" />
+            <NavLink to="/">
+              <img src={logoDark} alt="Logo" />
+            </NavLink>
           ) : (
-            <img src={logoLight} alt="Logo" />
+            <NavLink to="/">
+              <img src={logoLight} alt="Logo" />
+            </NavLink>
           )}
         </div>
         {isAuth ? (
