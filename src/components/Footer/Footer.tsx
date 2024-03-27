@@ -8,13 +8,27 @@ export const Footer = () => {
       <nav className="footer__nav">
         <ul className="footer__list">
           <li className="footer__item">
-            <a href="">Vk</a>
+            <a
+              href="https://vk.com/place_for_your_ad"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Vk
+            </a>
           </li>
           <li className="footer__item">
-            <a href="">GitHub</a>
+            <a
+              href="https://github.com/EvgenyRaevsky"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
           </li>
           <li className="footer__item">
-            <a href="">Telegram</a>
+            <a href="https://t.me/RaevskyEA" target="_blank" rel="noreferrer">
+              Telegram
+            </a>
           </li>
         </ul>
       </nav>
