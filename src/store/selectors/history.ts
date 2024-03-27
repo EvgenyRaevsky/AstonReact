@@ -10,5 +10,5 @@ export const selectHistory = createSelector(
 
 export const selectSagest = createSelector(
   [selectHistoryState],
-  selectHistoryState => selectHistoryState.sagest
+  selectHistoryState => selectHistoryState.suggest
 );

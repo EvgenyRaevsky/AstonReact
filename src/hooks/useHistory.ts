@@ -7,12 +7,12 @@ import {
 } from "firebase/firestore";
 import { useAppDispatch } from "./redux";
 import { db } from "../firebase";
-import { setHistory, setSagest } from "../store/slice/historySlice";
+import { setHistory, setSuggest } from "../store/slice/historySlice";
 
 export const useHistory = () => {
   const dispatch = useAppDispatch();
 
-  const getHistoryRequestsSagest = async (value: string, email: string) => {
+  const readHistoryRequestsSagest = async (value: string, email: string) => {
     const data = await getDoc(doc(db, "users", email));
     if (data.exists() && data.data() && data.data()["history"]) {
       const resultRequests = data.data()["history"];
@@ -24,11 +24,11 @@ export const useHistory = () => {
             value.toLowerCase()
         )
         .slice(0, 5);
-      dispatch(setSagest(res));
+      dispatch(setSuggest(res));
     }
   };
 
-  const getHistoryRequests = async (email: string) => {
+  const readHistoryRequests = async (email: string) => {
     const data = await getDoc(doc(db, "users", email));
     if (data.exists() && data.data() && data.data()["history"]) {
       dispatch(setHistory(data.data()["history"]));
@@ -39,19 +39,19 @@ export const useHistory = () => {
     await updateDoc(doc(db, "users", email), {
       ["history"]: arrayUnion(request)
     });
-    await getHistoryRequests(email);
+    await readHistoryRequests(email);
   };
 
   const deleteHistoryRequests = async (request: string, email: string) => {
     await updateDoc(doc(db, "users", email), {
       ["history"]: arrayRemove(request)
     });
-    await getHistoryRequests(email);
+    await readHistoryRequests(email);
   };
 
   return {
-    getHistoryRequestsSagest,
-    getHistoryRequests,
+    readHistoryRequestsSagest,
+    readHistoryRequests,
     addHistoryRequests,
     deleteHistoryRequests
   };

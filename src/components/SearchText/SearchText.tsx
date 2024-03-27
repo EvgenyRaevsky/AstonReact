@@ -5,17 +5,17 @@ import { useAppSelector } from "../../hooks/redux";
 import { selectUser } from "../../store/selectors/user";
 import { useHistory } from "../../hooks/useHistory";
 import { useDebounce } from "../../hooks/useDebounce";
-import { Sagest } from "../Sagest/Sagest";
+import { Suggest } from "../Suggest/Suggest";
 import search from "../../assets/images/search.svg";
 import "./SearchText.css";
 
 interface Props {
   visible: boolean;
-  reloud?: boolean | boolean;
-  setReloud?: React.Dispatch<React.SetStateAction<boolean>>;
+  reload?: boolean | boolean;
+  setReload?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const SearchText = ({ visible, reloud, setReloud }: Props) => {
+export const SearchText = ({ visible, reload, setReload }: Props) => {
   const navigate = useNavigate();
   const user = useAppSelector(selectUser);
   const { addHistoryRequests } = useHistory();
@@ -39,8 +39,8 @@ export const SearchText = ({ visible, reloud, setReloud }: Props) => {
       await addHistoryRequests(searchText, user.email);
     }
     navigate(`/search?request=${searchText}`);
-    if (reloud !== undefined && setReloud !== undefined) {
-      setReloud(!reloud);
+    if (reload !== undefined && setReload !== undefined) {
+      setReload(!reload);
     }
   };
 
@@ -56,11 +56,11 @@ export const SearchText = ({ visible, reloud, setReloud }: Props) => {
         onBlur={() => setTimeout(() => setIsFocus(false), 300)}
       />
       {visible && (
-        <Sagest
+        <Suggest
           isFocus={isFocus}
           request={request}
-          setReloud={setReloud}
-          reloud={reloud}
+          setReloud={setReload}
+          reloud={reload}
         />
       )}
       <button className="search-container__btn">

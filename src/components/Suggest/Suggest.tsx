@@ -4,7 +4,7 @@ import { useAppSelector } from "../../hooks/redux";
 import { selectSagest } from "../../store/selectors/history";
 import { selectUser } from "../../store/selectors/user";
 import { useHistory } from "../../hooks/useHistory";
-import "./Sagest.css";
+import "./Suggest.css";
 
 interface Props {
   isFocus: boolean;
@@ -13,13 +13,13 @@ interface Props {
   setReloud?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Sagest = ({ isFocus, request, setReloud, reloud }: Props) => {
+export const Suggest = ({ isFocus, request, setReloud, reloud }: Props) => {
   const navigate = useNavigate();
   const requestsList = useAppSelector(selectSagest);
   const user = useAppSelector(selectUser);
-  const { getHistoryRequestsSagest } = useHistory();
+  const { readHistoryRequestsSagest } = useHistory();
 
-  const clickSagest = (searchText: string) => {
+  const clickSuggest = (searchText: string) => {
     navigate(`/search?request=${searchText}`);
     if (reloud !== undefined && setReloud != undefined) {
       setReloud(!reloud);
@@ -29,20 +29,20 @@ export const Sagest = ({ isFocus, request, setReloud, reloud }: Props) => {
   useEffect(() => {
     (async () => {
       if (user?.email) {
-        await getHistoryRequestsSagest(request, user.email);
+        await readHistoryRequestsSagest(request, user.email);
       }
     })();
   }, [request]);
 
   return (
     requestsList.length > 0 && (
-      <div className={`sagest sagest-${isFocus}`}>
+      <div className={`suggest suggest-${isFocus}`}>
         {[...requestsList].map((el, i) => {
           return (
             <p
-              className="sagest__request"
+              className="suggest__request"
               key={i}
-              onClick={() => clickSagest(el)}
+              onClick={() => clickSuggest(el)}
             >
               {el}
             </p>

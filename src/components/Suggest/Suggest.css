@@ -1,4 +1,4 @@
-.sagest {
+.suggest {
   position: absolute;
   top: calc(100% + 8px);
   background-color: #ffffff;
@@ -10,17 +10,17 @@
   overflow: hidden;
 }
 
-.sagest-false {
+.suggest-false {
   display: none;
 }
 
-.sagest-true {
+.suggest-true {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.sagest__request {
+.suggest__request {
   padding: 8px 25px;
   border-radius: 25px;
   background-color: aliceblue;

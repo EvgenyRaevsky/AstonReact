@@ -7,23 +7,23 @@ import { selectAuth } from "../../store/selectors/auth";
 import { setFavorites } from "../../store/slice/favoriteSlice";
 import { setUser } from "../../store/slice/userSlice";
 import { useFavorite } from "../../hooks/useFavorite";
-import { setHistory, setSagest } from "../../store/slice/historySlice";
+import { setHistory, setSuggest } from "../../store/slice/historySlice";
 import { useHistory } from "../../hooks/useHistory";
 import "./Header.css";
 
 export const Header = () => {
   const dispatch = useAppDispatch();
   const { signOutUser } = useAuth();
-  const { getFavoritesHeroes } = useFavorite();
-  const { getHistoryRequests } = useHistory();
+  const { readFavoritesHeroes } = useFavorite();
+  const { readHistoryRequests } = useHistory();
   const isAuth = useAppSelector(selectAuth);
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
       const user = JSON.parse(localStorage.getItem("user") || "{}");
       dispatch(setUser(user));
-      getFavoritesHeroes(user.email);
-      getHistoryRequests(user.email);
+      readFavoritesHeroes(user.email);
+      readHistoryRequests(user.email);
       dispatch(toggleAuth(true));
     }
   }, []);
@@ -33,7 +33,7 @@ export const Header = () => {
     dispatch(toggleAuth(false));
     dispatch(setFavorites([]));
     dispatch(setHistory([]));
-    dispatch(setSagest([]));
+    dispatch(setSuggest([]));
   };
 
   return (

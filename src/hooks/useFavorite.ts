@@ -13,7 +13,7 @@ import { transformSingleHeroResponseType } from "../types/HeroData";
 export const useFavorite = () => {
   const dispatch = useAppDispatch();
 
-  const getFavoritesHeroes = async (email: string) => {
+  const readFavoritesHeroes = async (email: string) => {
     const data = await getDoc(doc(db, "users", email));
     if (data.exists() && data.data() && data.data()["favorite"]) {
       dispatch(setFavorites(data.data()["favorite"]));
@@ -27,7 +27,7 @@ export const useFavorite = () => {
     await updateDoc(doc(db, "users", email), {
       ["favorite"]: arrayUnion(hero)
     });
-    await getFavoritesHeroes(email);
+    await readFavoritesHeroes(email);
   };
 
   const deleteFavoritesHeroes = async (
@@ -37,8 +37,8 @@ export const useFavorite = () => {
     await updateDoc(doc(db, "users", email), {
       ["favorite"]: arrayRemove(hero)
     });
-    await getFavoritesHeroes(email);
+    await readFavoritesHeroes(email);
   };
 
-  return { getFavoritesHeroes, addFavoritesHeroes, deleteFavoritesHeroes };
+  return { readFavoritesHeroes, addFavoritesHeroes, deleteFavoritesHeroes };
 };

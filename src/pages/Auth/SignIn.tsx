@@ -13,8 +13,8 @@ export const SignIn = () => {
   const dispatch = useAppDispatch();
   const { signInUser } = useAuth();
   const { error, setError } = useFormError();
-  const { getFavoritesHeroes } = useFavorite();
-  const { getHistoryRequests } = useHistory();
+  const { readFavoritesHeroes } = useFavorite();
+  const { readHistoryRequests } = useHistory();
 
   const handlerClick = async (email: string, password: string) => {
     const user = await signInUser(email, password);
@@ -26,8 +26,8 @@ export const SignIn = () => {
           email: user.email
         })
       );
-      await getFavoritesHeroes(user.email);
-      await getHistoryRequests(user.email);
+      await readFavoritesHeroes(user.email);
+      await readHistoryRequests(user.email);
       dispatch(toggleAuth(true));
       navigate("/");
     } else {

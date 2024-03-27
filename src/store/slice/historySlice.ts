@@ -2,12 +2,12 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface initialHistoryState {
   history: string[];
-  sagest: string[];
+  suggest: string[];
 }
 
 const initialState: initialHistoryState = {
   history: [],
-  sagest: []
+  suggest: []
 };
 
 export const historySlice = createSlice({
@@ -17,10 +17,10 @@ export const historySlice = createSlice({
     setHistory: (state, action: PayloadAction<string[]>) => {
       state.history = action.payload;
     },
-    setSagest: (state, action: PayloadAction<string[]>) => {
-      state.sagest = action.payload;
+    setSuggest: (state, action: PayloadAction<string[]>) => {
+      state.suggest = action.payload;
     }
   }
 });
 
-export const { setHistory, setSagest } = historySlice.actions;
+export const { setHistory, setSuggest } = historySlice.actions;
