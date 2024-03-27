@@ -9,6 +9,11 @@ import { setUser } from "../../store/slice/userSlice";
 import { useFavorite } from "../../hooks/useFavorite";
 import { setHistory, setSuggest } from "../../store/slice/historySlice";
 import { useHistory } from "../../hooks/useHistory";
+import { useThemeCtx } from "../../context/ThemeCtx";
+import logoLight from "../../assets/images/logoLight.svg";
+import logoDark from "../../assets/images/logoDark.svg";
+import sunLight from "../../assets/images/sunLight.svg";
+import sunDark from "../../assets/images/sunDark.svg";
 import "./Header.css";
 
 export const Header = () => {
@@ -16,6 +21,7 @@ export const Header = () => {
   const { signOutUser } = useAuth();
   const { readFavoritesHeroes } = useFavorite();
   const { readHistoryRequests } = useHistory();
+  const { lightTheme, changeTheme } = useThemeCtx();
   const isAuth = useAppSelector(selectAuth);
 
   useEffect(() => {
@@ -37,10 +43,14 @@ export const Header = () => {
   };
 
   return (
-    <header className="header">
+    <header className={`header ${lightTheme ? "header-light" : "header-dark"}`}>
       <nav className="header__nav">
         <div className="header__logo">
-          <img src="../../../public/favicon.svg" alt="Logo" />
+          {lightTheme ? (
+            <img src={logoDark} alt="Logo" />
+          ) : (
+            <img src={logoLight} alt="Logo" />
+          )}
         </div>
         {isAuth ? (
           <>
@@ -93,6 +103,21 @@ export const Header = () => {
               </li>
             </ul>
           </>
+        )}
+        {lightTheme ? (
+          <img
+            className="header__theme"
+            src={sunDark}
+            alt="Dark"
+            onClick={changeTheme}
+          />
+        ) : (
+          <img
+            className="header__theme"
+            src={sunLight}
+            alt="Ligth"
+            onClick={changeTheme}
+          />
         )}
       </nav>
     </header>

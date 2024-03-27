@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { App } from "./App";
 import { store } from "./store/store";
 import "./main.css";
+import { ThemeCtx } from "./context/ThemeCtx";
 
 const container = document.getElementById("root");
 
@@ -13,7 +14,9 @@ if (container) {
   root.render(
     <React.StrictMode>
       <Provider store={store}>
-        <App />
+        <ThemeCtx>
+          <App />
+        </ThemeCtx>
       </Provider>
     </React.StrictMode>
   );
