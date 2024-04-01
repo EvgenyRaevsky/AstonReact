@@ -5,6 +5,7 @@ import { authSlice } from "./slice/authSlice";
 import { moreCardSlice } from "./slice/moreCardSlice";
 import { favoriteSlice } from "./slice/favoriteSlice";
 import { historySlice } from "./slice/historySlice";
+import { listenerMiddleware } from "./middlewares/userAuth";
 
 export const store = configureStore({
   reducer: {
@@ -16,7 +17,10 @@ export const store = configureStore({
     history: historySlice.reducer
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(genshinApi.middleware)
+    getDefaultMiddleware().concat([
+      genshinApi.middleware,
+      listenerMiddleware.middleware
+    ])
 });
 
 export type RootState = ReturnType<typeof store.getState>;
