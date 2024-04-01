@@ -24,6 +24,9 @@ export const Header = () => {
   const { lightTheme, changeTheme } = useThemeCtx();
   const isAuth = useAppSelector(selectAuth);
 
+  const logo = lightTheme ? logoDark : logoLight;
+  const theme = lightTheme ? sunDark : sunLight;
+
   useEffect(() => {
     if (localStorage.getItem("user")) {
       const user = JSON.parse(localStorage.getItem("user") || "{}");
@@ -46,15 +49,9 @@ export const Header = () => {
     <header className={`header ${lightTheme ? "header-light" : "header-dark"}`}>
       <nav className="header__nav">
         <div className="header__logo">
-          {lightTheme ? (
-            <NavLink to="/">
-              <img src={logoDark} alt="Logo" />
-            </NavLink>
-          ) : (
-            <NavLink to="/">
-              <img src={logoLight} alt="Logo" />
-            </NavLink>
-          )}
+          <NavLink to="/">
+            <img src={logo} alt="Logo" />
+          </NavLink>
         </div>
         {isAuth ? (
           <>
@@ -108,21 +105,12 @@ export const Header = () => {
             </ul>
           </>
         )}
-        {lightTheme ? (
-          <img
-            className="header__theme"
-            src={sunDark}
-            alt="Dark"
-            onClick={changeTheme}
-          />
-        ) : (
-          <img
-            className="header__theme"
-            src={sunLight}
-            alt="Ligth"
-            onClick={changeTheme}
-          />
-        )}
+        <img
+          className="header__theme"
+          src={theme}
+          alt="Theme"
+          onClick={changeTheme}
+        />
       </nav>
     </header>
   );

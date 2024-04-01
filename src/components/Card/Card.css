@@ -8,9 +8,18 @@
   box-shadow: 4px 4px 15px #00000080;
   border-radius: 20px;
   gap: 8px;
+  transition: 0.2s;
   padding: 10px 30px;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.card:hover {
+  box-shadow:
+    4px 4px 20px #00000090,
+    0 0 15px #00000030 inset,
+    0 0 10px #72cffa50 inset;
 }
 
 .card__bg {

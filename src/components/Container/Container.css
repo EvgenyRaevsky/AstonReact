@@ -24,18 +24,27 @@
   height: 250px;
   font-size: 1.5rem;
   font-weight: 600;
-  background-color: aliceblue;
+  background-color: #ffffff70;
   border: 1px solid #000000;
   border-radius: 20px;
+  border: 1px solid #00000080;
+  box-shadow: 4px 4px 15px #00000080;
+  transition: 0.2s;
+  cursor: pointer;
 }
 
 .container__btn:hover {
-  box-shadow: 2px 2px 10px #00000050;
+  box-shadow:
+    4px 4px 20px #00000090,
+    0 0 15px #00000030 inset,
+    0 0 10px #72cffa50 inset;
 }
 
 .container__btn:disabled {
   color: #00000030;
   border: 1px solid #00000030;
+  box-shadow: none;
+  cursor: auto;
 }
 
 .container__btn:disabled:hover {
