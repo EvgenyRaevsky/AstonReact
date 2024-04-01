@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../hooks/redux";
@@ -11,26 +11,27 @@ import "./SearchText.css";
 
 interface Props {
   visible: boolean;
-  reload?: boolean | boolean;
-  setReload?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const SearchText = ({ visible, reload, setReload }: Props) => {
+export const SearchText = ({ visible }: Props) => {
   const navigate = useNavigate();
   const user = useAppSelector(selectUser);
   const { addHistoryRequests } = useHistory();
   const [isFocus, setIsFocus] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchText, setSearchText] = useState(
+  const [searchText, setSearchText] = useState<string>(
     searchParams.get("request") || ""
   );
+
+  useEffect(() => {
+    setSearchText(searchParams.get("request") || "");
+  }, [searchParams]);
 
   const request = useDebounce(searchText, 500);
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchText(value);
-    setSearchParams({ request: value });
   };
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
@@ -38,10 +39,8 @@ export const SearchText = ({ visible, reload, setReload }: Props) => {
     if (user?.email) {
       await addHistoryRequests(searchText, user.email);
     }
-    navigate(`/search?request=${searchText}`);
-    if (reload !== undefined && setReload !== undefined) {
-      setReload(!reload);
-    }
+    setSearchParams({ request: searchText });
+    navigate(`/search?request=${searchText}`, { replace: true });
   };
 
   return (
@@ -55,14 +54,7 @@ export const SearchText = ({ visible, reload, setReload }: Props) => {
         onFocus={() => setIsFocus(true)}
         onBlur={() => setTimeout(() => setIsFocus(false), 300)}
       />
-      {visible && (
-        <Suggest
-          isFocus={isFocus}
-          request={request}
-          setReloud={setReload}
-          reloud={reload}
-        />
-      )}
+      {visible && <Suggest isFocus={isFocus} request={request} />}
       <button className="search-container__btn">
         <img src={search} alt="Search" />
       </button>

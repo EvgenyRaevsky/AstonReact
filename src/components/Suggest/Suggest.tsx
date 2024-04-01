@@ -13,7 +13,7 @@ interface Props {
   setReloud?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Suggest = ({ isFocus, request, setReloud, reloud }: Props) => {
+export const Suggest = ({ isFocus, request }: Props) => {
   const navigate = useNavigate();
   const requestsList = useAppSelector(selectSagest);
   const user = useAppSelector(selectUser);
@@ -21,9 +21,6 @@ export const Suggest = ({ isFocus, request, setReloud, reloud }: Props) => {
 
   const clickSuggest = (searchText: string) => {
     navigate(`/search?request=${searchText}`);
-    if (reloud !== undefined && setReloud != undefined) {
-      setReloud(!reloud);
-    }
   };
 
   useEffect(() => {
