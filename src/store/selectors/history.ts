@@ -12,3 +12,8 @@ export const selectSagest = createSelector(
   [selectHistoryState],
   selectHistoryState => selectHistoryState.suggest
 );
+
+export const selectUploadingHistory = createSelector(
+  [selectHistoryState],
+  selectHistoryState => selectHistoryState.uploadingHistory
+);

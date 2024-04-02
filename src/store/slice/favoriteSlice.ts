@@ -3,10 +3,12 @@ import { transformSingleHeroResponseType } from "../../types/HeroData";
 
 interface initialFavoriteState {
   favorites: transformSingleHeroResponseType[];
+  uploadingFavorites: boolean;
 }
 
 const initialState: initialFavoriteState = {
-  favorites: []
+  favorites: [],
+  uploadingFavorites: true
 };
 
 export const favoriteSlice = createSlice({
@@ -18,6 +20,7 @@ export const favoriteSlice = createSlice({
       action: PayloadAction<transformSingleHeroResponseType[]>
     ) => {
       state.favorites = action.payload;
+      state.uploadingFavorites = false;
     }
   }
 });

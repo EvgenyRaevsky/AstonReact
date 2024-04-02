@@ -7,3 +7,8 @@ export const selectFavorite = createSelector(
   [selectFavoriteState],
   selectFavoriteState => selectFavoriteState.favorites
 );
+
+export const selectUploadingFavorites = createSelector(
+  [selectFavoriteState],
+  selectFavoriteState => selectFavoriteState.uploadingFavorites
+);
