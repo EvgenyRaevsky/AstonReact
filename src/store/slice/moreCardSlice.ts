@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface initialCardState {
   length: number;
@@ -14,7 +14,7 @@ export const moreCardSlice = createSlice({
   name: "cards",
   initialState,
   reducers: {
-    showMoreCard: (state, action) => {
+    showMoreCard: (state, action: PayloadAction<number>) => {
       state.length = action.payload;
     },
     endLenCard: state => {

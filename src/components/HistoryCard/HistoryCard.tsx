@@ -1,3 +1,4 @@
+import PropTypes, { InferProps } from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useHistory } from "../../hooks/useHistory";
 import { useAppSelector } from "../../hooks/redux";
@@ -6,11 +7,13 @@ import search from "../../assets/images/search.svg";
 import del from "../../assets/images/delete.svg";
 import "./HistoryCard.css";
 
-interface Props {
-  request: string;
-}
+const HistoryCardPropTypes = {
+  request: PropTypes.string.isRequired
+};
 
-export const HistoryCard = ({ request }: Props) => {
+type HistoryCardTypes = InferProps<typeof HistoryCardPropTypes>;
+
+export const HistoryCard = ({ request }: HistoryCardTypes) => {
   const navigate = useNavigate();
   const user = useAppSelector(selectUser);
   const { deleteHistoryRequests } = useHistory();
@@ -42,3 +45,5 @@ export const HistoryCard = ({ request }: Props) => {
     </div>
   );
 };
+
+HistoryCard.propTypes = HistoryCardPropTypes;

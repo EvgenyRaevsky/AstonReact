@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema, FormSchema } from "../../types/FormTypes";
@@ -9,7 +8,7 @@ interface Props {
   handlerClick: (email: string, password: string) => void;
 }
 
-export const Form: FC<Props> = ({ title, handlerClick }) => {
+export const Form = ({ title, handlerClick }: Props) => {
   const {
     register,
     handleSubmit,

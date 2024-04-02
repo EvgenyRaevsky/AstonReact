@@ -26,15 +26,12 @@ export const Header = () => {
 
   const userData = localStorage.getItem("user");
 
-  if (userData) {
-    dispatch(toggleAuth(true));
-  }
-
   const logo = lightTheme ? logoDark : logoLight;
   const theme = lightTheme ? sunDark : sunLight;
 
   useEffect(() => {
     if (userData) {
+      dispatch(toggleAuth(true));
       const user = JSON.parse(userData || "{}");
       dispatch(setUser(user));
       readFavoritesHeroes(user.email);
@@ -58,7 +55,7 @@ export const Header = () => {
             <img src={logo} alt="Logo" />
           </NavLink>
         </div>
-        {isAuth ? (
+        {isAuth || userData ? (
           <>
             <ul className="header__list">
               <li className="header__item">
