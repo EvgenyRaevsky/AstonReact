@@ -24,16 +24,21 @@ export const Header = () => {
   const { lightTheme, changeTheme } = useThemeCtx();
   const isAuth = useAppSelector(selectAuth);
 
+  const userData = localStorage.getItem("user");
+
+  if (userData) {
+    dispatch(toggleAuth(true));
+  }
+
   const logo = lightTheme ? logoDark : logoLight;
   const theme = lightTheme ? sunDark : sunLight;
 
   useEffect(() => {
-    if (localStorage.getItem("user")) {
-      const user = JSON.parse(localStorage.getItem("user") || "{}");
+    if (userData) {
+      const user = JSON.parse(userData || "{}");
       dispatch(setUser(user));
       readFavoritesHeroes(user.email);
       readHistoryRequests(user.email);
-      dispatch(toggleAuth(true));
     }
   }, []);
 
