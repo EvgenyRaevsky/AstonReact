@@ -3,7 +3,7 @@ import { SingleCard } from "../../components/SingleCard/SingleCard";
 import { Container } from "../../components/Container/Container";
 
 type QuizParams = {
-  name: string;
+  name: string | undefined;
 };
 
 export const ItemCard = () => {

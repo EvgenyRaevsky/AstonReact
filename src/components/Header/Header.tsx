@@ -16,6 +16,11 @@ import sunLight from "../../assets/images/sunLight.svg";
 import sunDark from "../../assets/images/sunDark.svg";
 import "./Header.css";
 
+interface userState {
+  uid: string;
+  email: string;
+}
+
 export const Header = () => {
   const dispatch = useAppDispatch();
   const { signOutUser } = useAuth();
@@ -32,7 +37,7 @@ export const Header = () => {
   useEffect(() => {
     if (userData) {
       dispatch(toggleAuth(true));
-      const user = JSON.parse(userData || "{}");
+      const user: userState = JSON.parse(userData || "{}");
       dispatch(setUser(user));
       readFavoritesHeroes(user.email);
       readHistoryRequests(user.email);

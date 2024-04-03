@@ -29,7 +29,7 @@ export const History = () => {
       <h1 className="container__title">Your Search History</h1>
       <SearchText visible={false} />
       {historyList.length > 0 ? (
-        historyList.map((text, i: number) => {
+        historyList.map((text, i) => {
           return <HistoryCard request={text} key={i} />;
         })
       ) : (

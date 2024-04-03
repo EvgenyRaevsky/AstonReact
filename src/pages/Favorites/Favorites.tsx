@@ -19,7 +19,7 @@ export const Favorites = () => {
     <Container>
       <h1 className="container__title">Your Favorite Heroes</h1>
       {favoriteList.length > 0 ? (
-        favoriteList.map((hero, i: number) => {
+        favoriteList.map((hero, i) => {
           return <Card hero={hero} key={i} />;
         })
       ) : (

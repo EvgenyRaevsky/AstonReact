@@ -15,7 +15,7 @@ export const useHistory = () => {
   const readHistoryRequestsSagest = async (value: string, email: string) => {
     const data = await getDoc(doc(db, "users", email));
     if (data.exists() && data.data() && data.data()["history"]) {
-      const resultRequests = data.data()["history"];
+      const resultRequests: string[] = data.data()["history"];
       const res = [...resultRequests]
         .reverse()
         .filter(

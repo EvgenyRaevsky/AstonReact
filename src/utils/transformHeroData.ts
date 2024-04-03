@@ -3,7 +3,7 @@ import {
   transformSingleHeroResponseType
 } from "../types/HeroData";
 
-const namesSeparatedDashes = [
+const namesSeparatedDashes: string[] = [
   "Arataki Itto",
   "Hu Tao",
   "Shikanoin Heizou",
@@ -12,7 +12,7 @@ const namesSeparatedDashes = [
   "Kuki Shinobu"
 ];
 
-const onlyLastName = [
+const onlyLastName: string[] = [
   "Kamisato Ayaka",
   "Kamisato Ayato",
   "Kaedehara Kazuha",
@@ -20,9 +20,9 @@ const onlyLastName = [
   "Kujou Sara"
 ];
 
-const onlyFirstName = ["Raiden Shogun"];
+const onlyFirstName: string[] = ["Raiden Shogun"];
 
-export const setId = (name: string, vision: string) => {
+export const setId = (name: string, vision: string): string => {
   if (name === "Traveler") {
     return `${name.toLowerCase()}-${vision.toLowerCase()}`;
   }

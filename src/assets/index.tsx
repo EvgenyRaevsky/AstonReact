@@ -8,7 +8,12 @@ import Pyro from "./images/pyro.svg";
 
 import star from "./images/star.svg";
 
-export const vision = [
+type VisionType = {
+  path: string;
+  title: string;
+};
+
+export const vision: VisionType[] = [
   {
     path: Anemo,
     title: "Anemo"
@@ -44,7 +49,7 @@ export const findVision = (item: string) => {
 };
 
 export const rarity = (item: number) => {
-  const arr = [];
+  const arr: string[] = [];
   for (let i = 0; i < item; i++) {
     arr.push(star);
   }

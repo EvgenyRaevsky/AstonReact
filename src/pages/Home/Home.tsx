@@ -38,7 +38,7 @@ export const Home = () => {
       <h1 className="container__title">Genshin Impact Heroes</h1>
       <SearchText visible={true} />
       {allHeroInfo &&
-        allHeroInfo.slice(0, lengthCards).map((hero, i: number) => {
+        allHeroInfo.slice(0, lengthCards).map((hero, i) => {
           return <Card hero={hero} key={i} />;
         })}
       <button

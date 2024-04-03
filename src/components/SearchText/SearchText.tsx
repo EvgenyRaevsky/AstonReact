@@ -19,7 +19,7 @@ export const SearchText = ({ visible }: Props) => {
   const { addHistoryRequests } = useHistory();
   const [isFocus, setIsFocus] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchText, setSearchText] = useState<string>(
+  const [searchText, setSearchText] = useState(
     searchParams.get("request") || ""
   );
 
