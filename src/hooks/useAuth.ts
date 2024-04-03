@@ -7,6 +7,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { clearUser, setUser } from "../store/slice/userSlice";
 import { useAppDispatch } from "./redux";
+import { clearingUserData } from "../utils/localStorage";
 
 const register = async (email: string, password: string) => {
   return createUserWithEmailAndPassword(auth, email, password)
@@ -58,7 +59,7 @@ export const useAuth = () => {
 
   const signOutUser = async () => {
     await logout();
-    localStorage.removeItem("user");
+    clearingUserData();
     dispatch(clearUser());
   };
 

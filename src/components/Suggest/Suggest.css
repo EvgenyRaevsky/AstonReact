@@ -28,3 +28,10 @@
   box-shadow: 0 0 2px #777777;
   cursor: pointer;
 }
+
+.suggest__request:hover {
+  background-color: aliceblue;
+  box-shadow:
+    0 0 5px #777777,
+    0 0 2px #77777750 inset;
+}
