@@ -92,12 +92,20 @@ export const Header = () => {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li className="header__item">
-                <NavLink to="/signin" className="header__item-no-color">
+                <NavLink
+                  to="/signin"
+                  className="header__item-no-color"
+                  onClick={e => e.preventDefault()}
+                >
                   Favorites
                 </NavLink>
               </li>
               <li className="header__item">
-                <NavLink to="/signin" className="header__item-no-color">
+                <NavLink
+                  to="/signin"
+                  className="header__item-no-color"
+                  onClick={e => e.preventDefault()}
+                >
                   History
                 </NavLink>
               </li>

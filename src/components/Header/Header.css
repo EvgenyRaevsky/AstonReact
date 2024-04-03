@@ -113,23 +113,25 @@
 }
 
 .header-light .header__item a.header__item-no-color {
-  color: #000000;
+  color: #d6d6d6;
+  border: none;
+  cursor: default;
+}
+
+.header-light .header__item a.header__item-no-color:hover {
+  color: #d6d6d6;
   border: none;
 }
 
 .header-dark .header__item a.header__item-no-color {
-  color: #ffffff;
+  color: #656565;
   border: none;
-}
-
-.header-light .header__item a.header__item-no-color:hover {
-  color: #727272;
-  border-bottom: 1px solid #727272;
+  cursor: default;
 }
 
 .header-dark .header__item a.header__item-no-color:hover {
-  color: #dadada;
-  border-bottom: 1px solid #dadada;
+  color: #656565;
+  border: none;
 }
 
 .header__theme {

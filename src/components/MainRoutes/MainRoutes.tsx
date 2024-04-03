@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router";
 import { Loader } from "../Loader/Loader";
+import { DefaultRoutes } from "./DefaultRoutes";
 
 const Home = lazy(() =>
   import("../../pages/Home/Home").then(module => ({ default: module.Home }))
@@ -71,7 +72,9 @@ export const MainRoutes = () => {
         path="/favorites"
         element={
           <Suspense fallback={<Loader />}>
-            <Favorites />
+            <DefaultRoutes>
+              <Favorites />
+            </DefaultRoutes>
           </Suspense>
         }
       />
@@ -79,7 +82,9 @@ export const MainRoutes = () => {
         path="/history"
         element={
           <Suspense fallback={<Loader />}>
-            <History />
+            <DefaultRoutes>
+              <History />
+            </DefaultRoutes>
           </Suspense>
         }
       />
