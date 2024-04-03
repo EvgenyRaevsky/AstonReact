@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useMemo, useState } from "react";
 
 type Props = {
   children: ReactNode;
@@ -28,7 +28,7 @@ export const ThemeCtx = ({ children }: Props) => {
     setLightTheme(!lightTheme);
   };
 
-  return (
-    <Ctx.Provider value={{ lightTheme, changeTheme }}>{children}</Ctx.Provider>
-  );
+  const value = useMemo(() => ({ lightTheme, changeTheme }), [lightTheme]);
+
+  return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 };
