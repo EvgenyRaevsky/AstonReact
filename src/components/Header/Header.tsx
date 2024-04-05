@@ -15,6 +15,7 @@ import logoDark from "../../assets/images/logoDark.svg";
 import sunLight from "../../assets/images/sunLight.svg";
 import sunDark from "../../assets/images/sunDark.svg";
 import "./Header.css";
+import { gettingUserData } from "../../utils/localStorage";
 
 interface userState {
   uid: string;
@@ -29,7 +30,7 @@ export const Header = () => {
   const { lightTheme, changeTheme } = useThemeCtx();
   const isAuth = useAppSelector(selectAuth);
 
-  const userData = localStorage.getItem("user");
+  const userData = gettingUserData();
 
   const logo = lightTheme ? logoDark : logoLight;
   const theme = lightTheme ? sunDark : sunLight;

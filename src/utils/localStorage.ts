@@ -16,3 +16,7 @@ export const savingUserData = (user: userState) => {
 export const clearingUserData = () => {
   localStorage.removeItem("user");
 };
+
+export const gettingUserData = () => {
+  return localStorage.getItem("user");
+};
