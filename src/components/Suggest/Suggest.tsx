@@ -8,8 +8,6 @@ import "./Suggest.css";
 interface Props {
   isFocus: boolean;
   request: string;
-  reloud?: boolean | boolean;
-  setReloud?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface AllHeroInfo {
