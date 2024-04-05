@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import "./Layout.css";
 import { useThemeCtx } from "../../context/ThemeCtx";
+import "./Layout.css";
 
 interface LayoutProps {
   children: ReactNode;
