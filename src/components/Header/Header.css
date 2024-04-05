@@ -116,6 +116,7 @@
   color: #d6d6d6;
   border: none;
   cursor: default;
+  position: relative;
 }
 
 .header-light .header__item a.header__item-no-color:hover {
@@ -127,11 +128,39 @@
   color: #656565;
   border: none;
   cursor: default;
+  position: relative;
 }
 
 .header-dark .header__item a.header__item-no-color:hover {
   color: #656565;
   border: none;
+}
+
+.header-light .header__item a.header__item-no-color:hover::before,
+.header-dark .header__item a.header__item-no-color:hover::before {
+  content: "Only authorized users";
+  position: absolute;
+  background-color: rgb(218, 238, 255);
+  color: #000000;
+  width: max-content;
+  padding: 8px 15px;
+  border-radius: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% + 10px);
+}
+
+.header-light .header__item a.header__item-no-color:hover::after,
+.header-dark .header__item a.header__item-no-color:hover::after {
+  content: "";
+  position: absolute;
+  background-color: rgb(218, 238, 255);
+  width: 20px;
+  height: 20px;
+  left: 50%;
+  top: calc(100% + 5px);
+  transform: translateX(-50%) rotate(45deg);
+  z-index: -1;
 }
 
 .header__theme {
