@@ -1,19 +1,15 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useSearchParams } from "react-router-dom";
 import { useAppSelector } from "../../hooks/redux";
 import { selectUser } from "../../store/selectors/user";
 import { useHistory } from "../../hooks/useHistory";
 import { useDebounce } from "../../hooks/useDebounce";
-import { Suggest } from "../Suggest/Suggest";
+import Suggest from "../Suggest/Suggest";
 import search from "../../assets/images/search.svg";
 import "./SearchText.css";
 
-interface Props {
-  visible: boolean;
-}
-
-export const SearchText = ({ visible }: Props) => {
+export const SearchText = () => {
   const navigate = useNavigate();
   const user = useAppSelector(selectUser);
   const { addHistoryRequests } = useHistory();
@@ -27,7 +23,7 @@ export const SearchText = ({ visible }: Props) => {
     setSearchText(searchParams.get("request") || "");
   }, [searchParams]);
 
-  const request = useDebounce(searchText, 500);
+  const request = useDebounce(searchText, 800);
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -36,11 +32,13 @@ export const SearchText = ({ visible }: Props) => {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    if (user?.email) {
-      await addHistoryRequests(searchText, user.email);
+    if (searchText.trim().length) {
+      if (user?.email) {
+        await addHistoryRequests(searchText, user.email);
+      }
+      setSearchParams({ request: searchText });
+      navigate(`/search?request=${searchText.trim()}`, { replace: true });
     }
-    setSearchParams({ request: searchText });
-    navigate(`/search?request=${searchText}`, { replace: true });
   };
 
   return (
@@ -54,7 +52,7 @@ export const SearchText = ({ visible }: Props) => {
         onFocus={() => setIsFocus(true)}
         onBlur={() => setTimeout(() => setIsFocus(false), 300)}
       />
-      {visible && <Suggest isFocus={isFocus} request={request} />}
+      <Suggest isFocus={isFocus} request={request} />
       <button className="search-container__btn">
         <img src={search} alt="Search" />
       </button>

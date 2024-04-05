@@ -7,15 +7,15 @@ import { selectAuth } from "../../store/selectors/auth";
 import { setFavorites } from "../../store/slice/favoriteSlice";
 import { setUser } from "../../store/slice/userSlice";
 import { useFavorite } from "../../hooks/useFavorite";
-import { setHistory, setSuggest } from "../../store/slice/historySlice";
+import { setHistory } from "../../store/slice/historySlice";
 import { useHistory } from "../../hooks/useHistory";
 import { useThemeCtx } from "../../context/ThemeCtx";
+import { gettingUserData } from "../../utils/localStorage";
 import logoLight from "../../assets/images/logoLight.svg";
 import logoDark from "../../assets/images/logoDark.svg";
 import sunLight from "../../assets/images/sunLight.svg";
 import sunDark from "../../assets/images/sunDark.svg";
 import "./Header.css";
-import { gettingUserData } from "../../utils/localStorage";
 
 interface userState {
   uid: string;
@@ -50,7 +50,6 @@ export const Header = () => {
     dispatch(toggleAuth(false));
     dispatch(setFavorites([]));
     dispatch(setHistory([]));
-    dispatch(setSuggest([]));
   };
 
   return (

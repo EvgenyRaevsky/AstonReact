@@ -36,7 +36,7 @@ export const Card = ({ hero }: Props) => {
   };
 
   const clickOnCard = () => {
-    navigate(`/${hero.id}`);
+    navigate(`/${hero.name}`);
   };
 
   return (

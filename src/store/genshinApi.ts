@@ -23,9 +23,19 @@ export const genshinApi = createApi({
       transformResponse: (
         response: SingleHeroResponseType
       ): transformSingleHeroResponseType => transformSingleHeroData(response)
+    }),
+    getSearchGenshinHero: build.query<SingleHeroResponseType[], void>({
+      query: () => `characters/all`,
+      keepUnusedDataFor: 0,
+      transformResponse: (
+        response: SingleHeroResponseType[]
+      ): transformSingleHeroResponseType[] => transformHeroData(response)
     })
   })
 });
 
-export const { useGetGenshinHeroQuery, useGetGenshinSingleHeroInfoQuery } =
-  genshinApi;
+export const {
+  useGetGenshinHeroQuery,
+  useGetGenshinSingleHeroInfoQuery,
+  useGetSearchGenshinHeroQuery
+} = genshinApi;

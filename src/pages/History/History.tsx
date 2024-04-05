@@ -27,7 +27,7 @@ export const History = () => {
   return (
     <Container>
       <h1 className="container__title">Your Search History</h1>
-      <SearchText visible={true} />
+      <SearchText />
       {historyList.length > 0 ? (
         historyList.map((text, i) => {
           return <HistoryCard request={text} key={i} />;

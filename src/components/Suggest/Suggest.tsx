@@ -1,9 +1,8 @@
-import { useEffect } from "react";
+import { memo } from "react";
 import { useNavigate } from "react-router";
-import { useAppSelector } from "../../hooks/redux";
-import { selectSagest } from "../../store/selectors/history";
-import { selectUser } from "../../store/selectors/user";
-import { useHistory } from "../../hooks/useHistory";
+import { useGetGenshinHeroQuery } from "../../store/genshinApi";
+import { filterSuggest } from "../../utils/searchHeroData";
+import { transformSingleHeroResponseType } from "../../types/HeroData";
 import "./Suggest.css";
 
 interface Props {
@@ -13,28 +12,25 @@ interface Props {
   setReloud?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Suggest = ({ isFocus, request }: Props) => {
+interface AllHeroInfo {
+  data: transformSingleHeroResponseType[];
+}
+
+const Suggest = ({ isFocus, request }: Props) => {
   const navigate = useNavigate();
-  const requestsList = useAppSelector(selectSagest);
-  const user = useAppSelector(selectUser);
-  const { readHistoryRequestsSagest } = useHistory();
 
   const clickSuggest = (searchText: string) => {
-    navigate(`/search?request=${searchText}`);
+    navigate(`/${searchText}`);
   };
 
-  useEffect(() => {
-    (async () => {
-      if (user?.email) {
-        await readHistoryRequestsSagest(request, user.email);
-      }
-    })();
-  }, [request]);
+  const { data: allHeroInfo } = useGetGenshinHeroQuery<AllHeroInfo>();
+
+  const suggests = filterSuggest(allHeroInfo, request);
 
   return (
-    requestsList.length > 0 && (
+    suggests.length > 0 && (
       <div className={`suggest suggest-${isFocus}`}>
-        {[...requestsList].map((el, i) => {
+        {[...suggests].map((el, i) => {
           return (
             <p
               className="suggest__request"
@@ -49,3 +45,5 @@ export const Suggest = ({ isFocus, request }: Props) => {
     )
   );
 };
+
+export default memo(Suggest);

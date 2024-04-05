@@ -7,26 +7,10 @@ import {
 } from "firebase/firestore";
 import { useAppDispatch } from "./redux";
 import { db } from "../firebase";
-import { setHistory, setSuggest } from "../store/slice/historySlice";
+import { setHistory } from "../store/slice/historySlice";
 
 export const useHistory = () => {
   const dispatch = useAppDispatch();
-
-  const readHistoryRequestsSagest = async (value: string, email: string) => {
-    const data = await getDoc(doc(db, "users", email));
-    if (data.exists() && data.data() && data.data()["history"]) {
-      const resultRequests: string[] = data.data()["history"];
-      const res = [...resultRequests]
-        .reverse()
-        .filter(
-          el =>
-            el.split("").slice(0, value.length).join("").toLowerCase() ===
-            value.toLowerCase()
-        )
-        .slice(0, 5);
-      dispatch(setSuggest(res));
-    }
-  };
 
   const readHistoryRequests = async (email: string) => {
     const data = await getDoc(doc(db, "users", email));
@@ -50,7 +34,6 @@ export const useHistory = () => {
   };
 
   return {
-    readHistoryRequestsSagest,
     readHistoryRequests,
     addHistoryRequests,
     deleteHistoryRequests
