@@ -12,6 +12,7 @@ interface Props {
 
 interface AllHeroInfo {
   data: transformSingleHeroResponseType[];
+  isLoading: boolean;
 }
 
 const Suggest = ({ isFocus, request }: Props) => {
@@ -21,9 +22,14 @@ const Suggest = ({ isFocus, request }: Props) => {
     navigate(`/${searchText}`);
   };
 
-  const { data: allHeroInfo } = useGetGenshinHeroQuery<AllHeroInfo>();
+  const { data: allHeroInfo, isLoading } =
+    useGetGenshinHeroQuery<AllHeroInfo>();
 
-  const suggests = filterSuggest(allHeroInfo, request);
+  let suggests: string[] = [];
+
+  if (!isLoading) {
+    suggests = filterSuggest(allHeroInfo, request);
+  }
 
   return (
     suggests.length > 0 && (
